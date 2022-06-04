@@ -18,11 +18,18 @@ public class TestiUkkeli : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform muzzleTransform;
 
+    public AnimationCurve recoilCurve;
+    public float recoilDuration = 0.25f;
+    public float recoilMaxRotation = 45f;
+    public Transform rightLowerArm;
+    public Transform rightHand;
+
     private float inputMovement;
     private Animator animator;
     private Rigidbody rbody;
     private bool isGrounded;
-    private Camera mainCamera;    
+    private Camera mainCamera;
+    private float recoilTimer;
 
     private int FacingSign
     {
@@ -69,10 +76,33 @@ public class TestiUkkeli : MonoBehaviour
 
     private void Fire()
     {
+        recoilTimer = Time.time;
+
         var go = Instantiate(bulletPrefab);
         go.transform.position = muzzleTransform.position;
         var bullet = go.GetComponent<Bullet>();
         bullet.Fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
+    }
+
+    private void LateUpdate()
+    {
+        // Recoil Animation
+        if (recoilTimer < 0)
+        {
+            return;
+        }
+
+        float curveTime = (Time.time - recoilTimer) / recoilDuration;
+        if (curveTime > 1f)
+        {
+            recoilTimer = -1;
+        }
+        else
+        {
+            rightLowerArm.Rotate(Vector3.back, recoilCurve.Evaluate(curveTime) * recoilMaxRotation, Space.Self);
+        }
+
+
     }
 
     private void FixedUpdate()

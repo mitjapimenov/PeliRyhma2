@@ -280,6 +280,52 @@ MonoBehaviour:
     m_Bits: 64
   bulletPrefab: {fileID: 7585464866067470226, guid: 90218ff00d8e8ca40b57d67c80fe4959, type: 3}
   muzzleTransform: {fileID: 778589471}
+  recoilCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.1052017
+      outSlope: 4.1052017
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.011989839
+      value: 0.049220707
+      inSlope: 2.0158975
+      outSlope: 2.0158975
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.56622314
+      value: 0.00853621
+      inSlope: -0.04654281
+      outSlope: -0.04654281
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.019678805
+      outSlope: -0.019678805
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilDuration: 0.25
+  recoilMaxRotation: 45
+  rightLowerArm: {fileID: 1976784461}
+  rightHand: {fileID: 38022861}
 --- !u!136 &395760247
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1576,6 +1622,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!4 &1976784461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9093080337593842761, guid: d28ece6232cc9e24d932b1f9469ff5e1, type: 3}
+  m_PrefabInstance: {fileID: 244369129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2003400482
 PrefabInstance:
   m_ObjectHideFlags: 0
