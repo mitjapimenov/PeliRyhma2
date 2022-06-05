@@ -103,7 +103,11 @@ public class EnemyAI : MonoBehaviour
 
         //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(0).LookAt(player.position);
         //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(1).LookAt(player.position);
-        transform.LookAt(lookPoint.position);
+        //transform.LookAt(lookPoint.position);
+
+        Vector3 lookAtPosition = lookPoint.position;
+        lookAtPosition.y = transform.position.y;
+        transform.LookAt(lookAtPosition);
 
         if (!alreadyAttacked)
         {
