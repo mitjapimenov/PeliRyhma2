@@ -28,6 +28,7 @@ public class TestiUkkeli : MonoBehaviour
     private Animator animator;
     private Rigidbody rbody;
     private bool isGrounded;
+    private bool crouch; // CROUCH MUUTOKSET
     private Camera mainCamera;
     private float recoilTimer;
 
@@ -71,6 +72,18 @@ public class TestiUkkeli : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Input.GetButton("Fire2"))     // TEST MUUTOS
         {
             Fire();
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) && isGrounded)        // CROUCH MUUTOKSET
+        {
+            crouch = true;
+            animator.Play("Armature|Crouch");
+            walkSpeed = 0f;
+        }
+        else
+        {
+            crouch = false;
+            walkSpeed = 5f;
         }
     }
 
@@ -117,6 +130,8 @@ public class TestiUkkeli : MonoBehaviour
         // Ground Check
         isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);
         animator.SetBool("isGrounded", isGrounded);
+
+        animator.SetBool("crouch", crouch);       // CROUCH MUUTOKSET
     }
     private void OnAnimatorIK()
     {
