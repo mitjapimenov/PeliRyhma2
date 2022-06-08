@@ -21,14 +21,20 @@ public class EnemyAI : MonoBehaviour
     public float walkPointRange;
 
     // Shoot
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    //public float timeBetweenAttacks;
+    //public bool alreadyAttacked;
 
     /*public GameObject projectile; */      //AMMUS KOODI
 
     //States
     public float sightRange, shootRange;
-    public bool playerInSightRange, playerInShootRange;    
+    public bool playerInSightRange, playerInShootRange;
+
+    public GameObject bullet;       // AMMUS KOODI TEST
+    public GameObject ShootingPoint;    // AMMUS KOODI TEST
+    public float fireRate = 1f;  // AMMUS KOODI TEST
+
+    private float nextFireTime; // AMMUS KOODI TEST
 
     private void Awake()
     {
@@ -55,12 +61,13 @@ public class EnemyAI : MonoBehaviour
             animator.Play("Armature|walk");
         }   
             
-        if (playerInSightRange && playerInShootRange)
+        if (playerInSightRange && playerInShootRange)        
         {
-            ShootPlayer();
+            CheckIfTimeToFire();        // AMMUS DELAY
+            ShootPlayer();              // SHOOT KOODI TEST
             animator.Play("Armature|attack");
         }            
-    }
+    }    
 
     private void Patrol()
     {
@@ -99,35 +106,43 @@ public class EnemyAI : MonoBehaviour
     private void ShootPlayer()
     {
         // Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
-        //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(0).LookAt(player.position);
-        //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(1).LookAt(player.position);
-        //transform.LookAt(lookPoint.position);
+        agent.SetDestination(transform.position);        
 
         Vector3 lookAtPosition = lookPoint.position;
         lookAtPosition.y = transform.position.y;
-        transform.LookAt(lookAtPosition);
-
-        if (!alreadyAttacked)
-        {
-            /*Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();*/      // AMMUS KOODI
-            /*rb.AddForce(transform.forward * 32f, ForceMode.Impulse);  */      //AMMUS KOODI
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetShoot), timeBetweenAttacks);
-        }
+        transform.LookAt(lookAtPosition);        
 
         if (!playerInSightRange && !playerInShootRange)
         {
             Patrol();
         }
+
+        //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(0).LookAt(player.position);
+        //transform.GetChild(0).GetChild(1).GetChild(4).GetChild(2).GetChild(1).LookAt(player.position);
+        //transform.LookAt(lookPoint.position);
+
+        //if (!alreadyAttacked)
+        //{
+        //    rigidbody rb = instantiate(projectile, transform.position, quaternion.identity).getcomponent<rigidbody>();
+        //    rb.addforce(transform.forward * 32f, forcemode.impulse);
+
+        //    alreadyAttacked = true;
+        //    Invoke(nameof(ResetShoot), timeBetweenAttacks);
+        //}
+    }
+    private void CheckIfTimeToFire()
+    {
+        if (Time.time > nextFireTime)
+        {
+            Instantiate(bullet, ShootingPoint.transform.position, Quaternion.identity); // AMMUS KOODI TEST
+            nextFireTime = Time.time + fireRate;        // AMMUS KOODI TEST
+        }
     }
 
-    private void ResetShoot()
-    {
-        alreadyAttacked = false;
-    }
+    //private void ResetShoot()
+    //{
+    //    alreadyAttacked = false;
+    //}
 
     private void OnDrawGizmosSelected()
     {
@@ -136,5 +151,5 @@ public class EnemyAI : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
-    }
+    }    
 }
