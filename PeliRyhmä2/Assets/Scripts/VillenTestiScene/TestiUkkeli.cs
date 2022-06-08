@@ -32,6 +32,9 @@ public class TestiUkkeli : MonoBehaviour
     private Camera mainCamera;
     private float recoilTimer;
 
+    [SerializeField]
+    private Collider standingCollider;      // Collider muutokset kun crouch
+
     private int FacingSign
     {
         get
@@ -77,12 +80,14 @@ public class TestiUkkeli : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && isGrounded)        // CROUCH MUUTOKSET
         {
             crouch = true;
+            standingCollider.enabled = false;       // Collider muutokset kun crouch
             animator.Play("Armature|Crouch");
             walkSpeed = 0f;
         }
         else
         {
             crouch = false;
+            standingCollider.enabled = true;        // Collider muutokset kun crouch
             walkSpeed = 5f;
         }
     }
