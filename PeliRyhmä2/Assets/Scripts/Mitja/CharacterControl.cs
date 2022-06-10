@@ -37,6 +37,18 @@ namespace GameProject
             this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //Pelaaja kääntyy meno suuntaan.
             animator.SetBool("Move", true);
         }
+
+        if(VirutalInputManager.Instance.StartRun)
+        {
+            this.gameObject.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            animator.SetBool("Run", true);
+        }
+        if(!VirutalInputManager.Instance.StartRun)
+        {
+            //this.gameObject.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            animator.SetBool("Run", false);
+        }
+        
     }
 }
 }

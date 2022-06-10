@@ -17,6 +17,15 @@ namespace GameProject
             VirutalInputManager.Instance.MoveRight = false;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            VirutalInputManager.Instance.StartRun = true;
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            VirutalInputManager.Instance.StartRun = false;
+        }
+
 
         if (Input.GetKey(KeyCode.A))
         {
