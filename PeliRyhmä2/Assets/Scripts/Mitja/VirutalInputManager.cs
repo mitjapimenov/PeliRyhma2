@@ -8,6 +8,7 @@ public class VirutalInputManager : Singleton<VirutalInputManager>
 {
     public bool MoveRight;
     public bool MoveLeft;
+    public bool StartRun;
 }
 
 }
