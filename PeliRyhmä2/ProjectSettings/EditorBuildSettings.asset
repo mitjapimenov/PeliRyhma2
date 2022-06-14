@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Jape/MainMenu.unity
+    guid: 88ddca9c966cfea448d231b3cc4602e1
+  - enabled: 1
+    path: Assets/Scenes/Jape/Jape.unity
+    guid: 30986e0a1f9a6604cb5011b41c1f2c9b
   m_configObjects: {}
