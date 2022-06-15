@@ -18,7 +18,11 @@ public class CRifle : MonoBehaviour
     private Animator animator;
     private Rigidbody rbody;
     private bool isGrounded;
-    private Camera mainCamera;    
+    private bool crouch; // CROUCH MUUTOKSET
+    private Camera mainCamera;
+
+    [SerializeField]
+    private Collider standingCollider;      // Collider muutokset kun crouch
 
     private int FacingSign
     {
@@ -56,6 +60,20 @@ public class CRifle : MonoBehaviour
             rbody.velocity = new Vector3(rbody.velocity.x, 0, 0);
             rbody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.Impulse); // Test Impulse oli VelocityChange
         }
+
+        if (Input.GetKey(KeyCode.LeftControl) && isGrounded)        // CROUCH MUUTOKSET
+        {
+            crouch = true;
+            standingCollider.enabled = false;       // Collider muutokset kun crouch
+            animator.Play("Armature|Crouch_gun");
+            walkSpeed = 0f;
+        }
+        else
+        {
+            crouch = false;
+            standingCollider.enabled = true;        // Collider muutokset kun crouch
+            walkSpeed = 4f;
+        }
     }
 
     private void FixedUpdate()
@@ -70,5 +88,7 @@ public class CRifle : MonoBehaviour
         // Ground Check
         isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);
         animator.SetBool("isGrounded", isGrounded);
+
+        animator.SetBool("crouch", crouch);       // CROUCH MUUTOKSET
     }
 }

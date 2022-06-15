@@ -43,17 +43,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|Jump_gun' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'pelvis' has translation animation that
-      will be discarded.\n\nClip 'Armature|Run1' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'pelvis' has translation animation that
-      will be discarded.\n\t'pelvis' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\nClip 'Armature|Run_gun' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'pelvis' has translation animation
-      that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -215,8 +205,8 @@ ModelImporter:
       name: Armature|Jump_gun
       takeName: Armature|Jump_gun
       internalID: 0
-      firstFrame: 0
-      lastFrame: 31
+      firstFrame: 4
+      lastFrame: 18.47
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

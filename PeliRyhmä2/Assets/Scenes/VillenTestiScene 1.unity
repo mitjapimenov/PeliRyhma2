@@ -1858,6 +1858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestGroundMat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99fe919e7bcb34b41abcabf166f962d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1523735987553866781, guid: 99fe919e7bcb34b41abcabf166f962d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3408,6 +3412,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  standingCollider: {fileID: 1814683311}
 --- !u!136 &1814683307
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3415,13 +3420,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814683303}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5e7fe8aa74e08a14891ebad87b326d85, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.7
+  m_Radius: 0.25
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: -0, y: 0.47, z: -0}
 --- !u!54 &1814683308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3554,6 +3559,19 @@ MonoBehaviour:
   - m_Rig: {fileID: 127382681}
     m_Active: 1
   m_Effectors: []
+--- !u!65 &1814683311
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814683303}
+  m_Material: {fileID: 13400000, guid: 5e7fe8aa74e08a14891ebad87b326d85, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: -0, y: 1.25, z: -0}
 --- !u!4 &1843657438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3017213073154681459, guid: 3dbdeaffbc610724187eb8d053851505, type: 3}
