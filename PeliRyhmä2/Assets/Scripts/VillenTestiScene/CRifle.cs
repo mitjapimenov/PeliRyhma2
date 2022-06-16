@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class CRifle : MonoBehaviour
 {
@@ -34,9 +35,12 @@ public class CRifle : MonoBehaviour
         }
     }
 
+    public Rig aimRig;      // TEST MOUSE AIM
+    private float targetWeight; // TEST MOUSE AIM   
+
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
@@ -73,6 +77,24 @@ public class CRifle : MonoBehaviour
             crouch = false;
             standingCollider.enabled = true;        // Collider muutokset kun crouch
             walkSpeed = 4f;
+        }        
+
+        if (Input.GetButton("Fire2"))
+        {
+            aimRig.weight = targetWeight;
+            targetWeight = 1f;
+            Debug.Log("Shoot aim happens");
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Debug.Log("SHOOT BULLET");
+            }
+        }        
+        else
+        {
+            aimRig.weight = targetWeight;
+            targetWeight = 0f;
+            Debug.Log("Shoot aim pois");
         }
     }
 
