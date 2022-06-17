@@ -5,9 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public string sceneName;
+    public GameObject mainMenuUI;
+
+    private void Start()
+    {
+        sceneName = SceneManager.GetActiveScene().name;
+    }
+    private void Update()
+    {
+        if(sceneName == "MainMenu")
+        {
+            Debug.Log("SceneName on MainMenu");
+        }
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Jape");
+        mainMenuUI.SetActive(false);
     }
     
     public void QuitGame()
