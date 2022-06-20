@@ -35,7 +35,8 @@ public class CRifle : MonoBehaviour
         }
     }
 
-    public Rig aimRig;      // TEST MOUSE AIM
+    public Rig weaponRig;      // TEST MOUSE AIM
+    public Rig spineRig; // RIG TEST
     private float targetWeight; // TEST MOUSE AIM   
 
     // Start is called before the first frame update
@@ -81,7 +82,8 @@ public class CRifle : MonoBehaviour
 
         if (Input.GetButton("Fire2"))
         {
-            aimRig.weight = targetWeight;
+            weaponRig.weight = targetWeight;
+            spineRig.weight = targetWeight;     //RIG TEST
             targetWeight = 1f;
             Debug.Log("Shoot aim happens");
 
@@ -92,7 +94,8 @@ public class CRifle : MonoBehaviour
         }        
         else
         {
-            aimRig.weight = targetWeight;
+            weaponRig.weight = targetWeight;
+            spineRig.weight = targetWeight;     // RIG TEST
             targetWeight = 0f;
             Debug.Log("Shoot aim pois");
         }
