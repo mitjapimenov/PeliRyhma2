@@ -15,6 +15,9 @@ public class CRifle : MonoBehaviour
     public LayerMask mouseAimMask;
     public LayerMask groundMask;
 
+    public GameObject bulletPrefab; // BULLET MUUTOKSET
+    public Transform muzzleTransform; //BULLET MUUTOKSET
+
     private float inputMovement;
     private Animator animator;
     private Rigidbody rbody;
@@ -37,7 +40,7 @@ public class CRifle : MonoBehaviour
 
     public Rig weaponRig;      // TEST MOUSE AIM
     public Rig spineRig; // RIG TEST
-    private float targetWeight; // TEST MOUSE AIM   
+    private float targetWeight; // TEST MOUSE AIM    
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +93,7 @@ public class CRifle : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 Debug.Log("SHOOT BULLET");
+                Fire();
             }
         }        
         else
@@ -99,6 +103,13 @@ public class CRifle : MonoBehaviour
             targetWeight = 0f;
             Debug.Log("Shoot aim pois");
         }
+    }
+    private void Fire()
+    {
+        var go = Instantiate(bulletPrefab);
+        go.transform.position = muzzleTransform.position;
+        var bullet = go.GetComponent<Bullet>();
+        bullet.Fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
     }
 
     private void FixedUpdate()
